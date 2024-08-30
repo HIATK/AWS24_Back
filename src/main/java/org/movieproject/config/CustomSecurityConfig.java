@@ -157,7 +157,8 @@ public class CustomSecurityConfig {
         // 허용할 도메인만 지정
         configuration.setAllowedOrigins(List.of(
                 "http://movie-front-env-1.eba-86ekffjf.ap-northeast-2.elasticbeanstalk.com:8080",
-                "http://movie-front-env-1.eba-86ekffjf.ap-northeast-2.elasticbeanstalk.com"
+                "http://movie-front-env-1.eba-86ekffjf.ap-northeast-2.elasticbeanstalk.com",
+                "http://movie-front-env-1.eba-86ekffjf.ap-northeast-2.elasticbeanstalk.com/api/"
         ));
 
         // 허용할 HTTP 메서드만 지정
