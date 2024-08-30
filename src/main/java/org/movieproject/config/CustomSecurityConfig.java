@@ -154,11 +154,23 @@ public class CustomSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://ec2-43-202-199-97.ap-northeast-2.compute.amazonaws.com:8080")); // 허용할 도메인,
+        // 허용할 도메인만 지정
+        configuration.setAllowedOrigins(List.of(
+                "http://ec2-43-202-199-97.ap-northeast-2.compute.amazonaws.com:8080",
+                "http://movie-front-env-1.eba-86ekffjf.ap-northeast-2.elasticbeanstalk.com"
+        ));
+
+        // 허용할 HTTP 메서드만 지정
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setExposedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true); // 자격 증명 허용
+
+        // 허용할 헤더만 지정
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Requested-With"));
+
+        // 클라이언트에 노출할 헤더 지정
+        configuration.setExposedHeaders(List.of("Authorization", "Content-Type"));
+
+        // 자격 증명 허용
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
