@@ -154,7 +154,7 @@ public class CustomSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://ec2-43-202-199-97.ap-northeast-2.compute.amazonaws.com:3000")); // 허용할 도메인,
+        configuration.setAllowedOrigins(List.of("http://ec2-43-202-199-97.ap-northeast-2.compute.amazonaws.com:8080")); // 허용할 도메인,
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setExposedHeaders(List.of("*"));
