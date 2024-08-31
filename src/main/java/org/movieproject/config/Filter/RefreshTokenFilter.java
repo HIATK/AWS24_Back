@@ -154,7 +154,7 @@ public class RefreshTokenFilter extends OncePerRequestFilter {
                 .path("/")
                 .maxAge(60 * 15) // 15분
                 .sameSite("Lax") // SameSite 설정
-                .domain("http://moviepunk.p-e.kr")
+                .domain("moviepunk.p-e.kr")
                 .build();
 
         // Refresh Token Cookie 생성
@@ -164,7 +164,7 @@ public class RefreshTokenFilter extends OncePerRequestFilter {
                 .path("/")
                 .maxAge(60 * 90) // 90분
                 .sameSite("Lax") // SameSite 설정
-                .domain("http://moviepunk.p-e.kr")
+                .domain("moviepunk.p-e.kr")
                 .build();
 
         // 쿠키를 응답에 추가
