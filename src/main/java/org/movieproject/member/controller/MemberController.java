@@ -230,7 +230,7 @@ public class MemberController {
                 .secure(true)
                 .path("/")
                 .maxAge(0) // 쿠키 만료
-                .domain("http://moviepunk.p-e.kr/")
+                .domain("https://moviepunk.p-e.kr/")
                 .sameSite("Lax")
                 .build();
 
@@ -240,7 +240,7 @@ public class MemberController {
                 .secure(true)
                 .path("/")
                 .maxAge(0) // 쿠키 만료
-                .domain("http://moviepunk.p-e.kr/")
+                .domain("https://moviepunk.p-e.kr/")
                 .sameSite("Lax")
                 .build();
 
