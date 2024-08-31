@@ -39,7 +39,7 @@ public class JwtLoginUtil {
                 .secure(true)
                 .path("/")
                 .maxAge(60 * 15) // 15분
-                .domain("moviepunk.o-r.kr")
+                .domain("moviepunk.p-e.kr")
                 .sameSite("Lax")
                 .build();
 
@@ -49,7 +49,7 @@ public class JwtLoginUtil {
                 .secure(true)
                 .path("/")
                 .maxAge(60 * 90) // 90분
-                .domain("moviepunk.o-r.kr")
+                .domain("moviepunk.p-e.kr")
                 .sameSite("Lax")
                 .build();
 
