@@ -1,7 +1,6 @@
 package org.movieproject.member.controller;
 
 import io.jsonwebtoken.JwtException;
-import io.swagger.v3.core.jackson.ModelResolver;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,9 +13,10 @@ import org.movieproject.member.dto.MemberDTO;
 import org.movieproject.member.entity.Member;
 import org.movieproject.member.repository.MemberRepository;
 import org.movieproject.member.service.MemberService;
-import org.movieproject.post.dto.PostDTO;
 import org.movieproject.security.JwtProvider;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -225,19 +225,50 @@ public class MemberController {
         jwtProvider.invalidateToken(refreshToken);
 
         // accessToken 쿠키 삭제
-        Cookie accessTokenCookie = new Cookie("accessToken", null);
-        accessTokenCookie.setHttpOnly(true);
-        accessTokenCookie.setPath("/");
-        accessTokenCookie.setMaxAge(0); // 쿠키 만료
-        response.addCookie(accessTokenCookie);
+        ResponseCookie accessTokenCookie = ResponseCookie.from("accessToken", "")
+                .httpOnly(true)
+                .secure(true)
+                .path("/")
+                .maxAge(0) // 쿠키 만료
+                .domain("http://moviepunk.p-e.kr/")
+                .sameSite("Lax")
+                .build();
 
         // refreshToken 쿠키 삭제
-        Cookie refreshTokenCookie = new Cookie("refreshToken", null);
-        refreshTokenCookie.setHttpOnly(true);
-        refreshTokenCookie.setPath("/");
-        refreshTokenCookie.setMaxAge(0); // 쿠키 만료
-        response.addCookie(refreshTokenCookie);
+        ResponseCookie refreshTokenCookie = ResponseCookie.from("refreshToken", "")
+                .httpOnly(true)
+                .secure(true)
+                .path("/")
+                .maxAge(0) // 쿠키 만료
+                .domain("http://moviepunk.p-e.kr/")
+                .sameSite("Lax")
+                .build();
+
+        // 쿠키를 응답에 추가
+        response.addHeader(HttpHeaders.SET_COOKIE, accessTokenCookie.toString());
+        response.addHeader(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString());
 
         return ResponseEntity.ok().build();
+    }
+
+    // 남의 프로필
+    @GetMapping("/otherProfile")
+    public ResponseEntity<?> getOtherMemberDetails(@RequestParam String nickname) {
+        log.info("남의 프로필 입장 !!!!!!!!!!!!!!!");
+        Optional<Member> memberOptional = memberRepository.findByMemberNick(nickname);
+        try {
+            if (memberOptional.isPresent()) {
+                Member member = memberOptional.get();
+                log.info("아더 멤버 정보 : "+member);
+                MemberDTO otherProfileDTO = modelMapper.map(member, MemberDTO.class);
+                log.info("아더 멤버 정보 DTO: {}", otherProfileDTO);
+                return ResponseEntity.ok(otherProfileDTO);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("멤버를 찾을 수 없습니다.");
+            }
+        } catch (Exception e) {
+            log.error("멤버 디테일에 문제가 발생했습니다.", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류가 발생했습니다.");
+        }
     }
 }

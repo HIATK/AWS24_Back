@@ -3,8 +3,8 @@ package org.movieproject.member.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
-import org.movieproject.member.entity.Member;
 import org.movieproject.member.dto.MemberDTO;
+import org.movieproject.member.entity.Member;
 import org.movieproject.member.repository.MemberRepository;
 import org.movieproject.upload.repository.ImageRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
         boolean exist = memberRepository.existsByMemberEmail(email);
 
         if (exist) {
-            throw new MemberService.MemberExistException("아이디가 중복되었습니다 !!! ");
+            throw new MemberExistException("아이디가 중복되었습니다 !!! ");
         }
 
         // 비밀번호 암호화

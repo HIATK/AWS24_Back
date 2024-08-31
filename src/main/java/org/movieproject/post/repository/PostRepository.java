@@ -1,10 +1,7 @@
 package org.movieproject.post.repository;
 
-import org.movieproject.movie.entity.Movie;
 import org.movieproject.post.entity.Post;
 import org.movieproject.post.repository.search.PostSearch;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

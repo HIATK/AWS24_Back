@@ -1,7 +1,5 @@
 package org.movieproject.post.service;
 
-import org.movieproject.post.dto.PageRequestDTO;
-import org.movieproject.post.dto.PageResponseDTO;
 import org.movieproject.post.dto.PostDTO;
 
 import java.util.List;

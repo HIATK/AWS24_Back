@@ -5,13 +5,10 @@ import com.querydsl.jpa.JPQLQuery;
 import org.movieproject.post.entity.Post;
 import org.movieproject.post.entity.QPost;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
-
-import static org.movieproject.post.entity.QPost.post;
 
 public class PostSearchImpl extends QuerydslRepositorySupport implements PostSearch {
     //  PostSearchImpl :  QuerydslRepositorySupport 상속받고 PostSearch 인터페이스 구현

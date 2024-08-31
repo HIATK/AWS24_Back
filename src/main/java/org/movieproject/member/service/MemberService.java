@@ -2,7 +2,6 @@ package org.movieproject.member.service;
 
 
 import org.movieproject.member.dto.MemberDTO;
-import org.movieproject.upload.dto.UploadResultDTO;
 
 public interface MemberService {
 
@@ -17,9 +16,9 @@ public interface MemberService {
     }
 
     // 회원가입
-    void memberJoin(MemberDTO memberDTO) throws MemberService.MemberExistException;
+    void memberJoin(MemberDTO memberDTO) throws MemberExistException;
 
     // 회원정보 삭제
-    void deleteMember(Integer memberNo) throws MemberService.MemberExistException;
+    void deleteMember(Integer memberNo) throws MemberExistException;
 
 }

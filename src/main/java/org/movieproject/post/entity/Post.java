@@ -2,8 +2,9 @@ package org.movieproject.post.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.movieproject.movie.entity.Movie;
 import org.movieproject.member.entity.Member;
+import org.movieproject.movie.entity.Movie;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 

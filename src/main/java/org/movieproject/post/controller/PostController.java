@@ -2,8 +2,6 @@ package org.movieproject.post.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.movieproject.post.dto.PageRequestDTO;
-import org.movieproject.post.dto.PageResponseDTO;
 import org.movieproject.post.dto.PostDTO;
 import org.movieproject.post.service.PostService;
 import org.springframework.http.MediaType;
