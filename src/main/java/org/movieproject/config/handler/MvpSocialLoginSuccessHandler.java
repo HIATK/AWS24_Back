@@ -31,9 +31,9 @@ public class MvpSocialLoginSuccessHandler implements AuthenticationSuccessHandle
         // 임시 비밀번호 사용자 여부에 따라 다른 URL로 리디렉트
         if (memberSecurityDTO.isSocial() && memberSecurityDTO.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_GUEST"))) {
             log.info("처음 소셜 로그인 사용자");
-            response.sendRedirect("https://frontend-psi-eight-70.vercel.app/member/profile");
+            response.sendRedirect("https://www.moviepunk.p-e.kr/member/profile");
         } else {
-            response.sendRedirect("https://frontend-psi-eight-70.vercel.app");
+            response.sendRedirect("https://www.moviepunk.p-e.kr");
         }
     }
 }
